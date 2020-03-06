@@ -17,7 +17,7 @@ def test1(element):
 
 
 # ------------------------------------------------
-class Test:
+class Test(object):
     '''Class for test possible properties of int instance'''
 
     # ------------------------------------------------
@@ -34,7 +34,7 @@ class Test:
     # ------------------------------------------------
     def test4(self, element):
         """Check abs method"""
-        assert abs(element) >= 0
+        assert abs(element) == element or abs(element) == -element
 
 
 # ------------------------------------------------

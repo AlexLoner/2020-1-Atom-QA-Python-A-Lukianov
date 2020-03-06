@@ -18,8 +18,9 @@ class Test:
 
     # ------------------------------------------------
     def test2(self, element):
-        """Check slices"""
-        assert element[:] or element[:] == []
+        """Check that lists can't be multiplied by non-int"""
+        with pytest.raises(TypeError):
+            assert element * element
 
     # ------------------------------------------------
     def test3(self, element):
@@ -32,16 +33,13 @@ class Test:
         try:
             element[-1] = 100
 
-        except IndexError:
-            element = element + [1]
-            element[-1] = [100]
-
         except TypeError:
             raise
 
 
 # ------------------------------------------------
 attr_lst = ['copy', 'append', 'count', 'extend']
+
 
 @pytest.mark.parametrize("value", attr_lst)
 def test5(value, element):
