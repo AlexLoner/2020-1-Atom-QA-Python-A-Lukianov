@@ -32,9 +32,10 @@ class Test(object):
         assert complex(element).imag == 0
 
     # ------------------------------------------------
-    def test4(self, element):
+    def test4(self):
         """Check abs method"""
-        assert abs(element) == element or abs(element) == -element
+        x = -4
+        assert abs(x) == -x
 
 
 # ------------------------------------------------

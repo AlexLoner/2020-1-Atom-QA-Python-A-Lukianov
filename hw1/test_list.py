@@ -30,12 +30,8 @@ class Test:
     # ------------------------------------------------
     def test4(self, element):
         """Check mutable property"""
-        try:
-            element[-1] = 100
-
-        except TypeError:
-            raise
-
+        element[-1] = 100
+        assert element[-1] == 100
 
 # ------------------------------------------------
 attr_lst = ['copy', 'append', 'count', 'extend']
