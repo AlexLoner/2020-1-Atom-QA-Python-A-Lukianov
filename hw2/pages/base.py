@@ -26,7 +26,6 @@ class BasePage:
         if confirm:
             field.send_keys(Keys.RETURN)
 
-
     def fill_field_by_css(self, selector, data, confirm=False):
         field = self.driver.find_element_by_css_selector(selector)
         field.clear()

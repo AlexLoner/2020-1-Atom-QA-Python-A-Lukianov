@@ -1,6 +1,5 @@
 import pytest
 
-from pages.audience import AudPage
 from tests.base_ui import BaseCase
 
 
@@ -39,22 +38,21 @@ class Test(BaseCase):
     def test_create_segment(self, auto_log):
         home_page = auto_log
         home_page.find(home_page.locators.SEGMENTS_LINE).click()
-        aud_page = AudPage(home_page.driver)
-        aud_page.begin_creation()
-        segments_before = aud_page.count_segments()
-        aud_page.create_segment()
-        segments_after = aud_page.count_segments()
-        assert segments_before + 1 == segments_after
+        self.aud_page.begin_creation()
+        name = self.aud_page.create_segment()
 
+        # search new segment
+        new_segment = self.aud_page.locators.SEGMENTS_NAME_REMOVE[1].replace('___', name)
+        loc = (self.aud_page.locators.SEGMENTS_NAME_REMOVE[0], new_segment)
+        res = self.aud_page.check_exist(loc)
+        assert res
 
     @pytest.mark.UI
     def test_wheel_segment(self, auto_log):
         home_page = auto_log
         home_page.find(home_page.locators.SEGMENTS_LINE).click()
         self.aud_page.begin_creation()
-
-        segments_before = self.aud_page.count_segments()
-        self.aud_page.create_segment()
-        self.aud_page.delete_segment()
-        segments_after = self.aud_page.count_segments(True)
-        assert segments_before == segments_after
+        name = self.aud_page.create_segment()
+        print(name)
+        res = self.aud_page.delete_segment(name=name)
+        assert not res

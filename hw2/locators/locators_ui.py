@@ -44,6 +44,8 @@ class AudLocators:
     SEGMENTS_NUMBER2 = (By.XPATH, '//div[@class="left-nav__item _active"]//span[@class="left-nav__count js-nav-item-count"]')
 
     ADD_BUTTON = (By.CSS_SELECTOR, 'span[data-translated="Add audience segments..."]')
+    SEGMENTS_NAME_INPUT = (By.XPATH, '//div[@class="js-segment-name"]//input[@class="input__inp js-form-element"]')
+    SEGMENTS_NAME_REMOVE = (By.XPATH, '//a[contains(text(), "___")]//..//../td[@data-id="remove"]//span')
     GALOCHKA = (By.CSS_SELECTOR, 'input[class="adding-segments-source__checkbox js-main-source-checkbox"]')
     CONFIRM_SEGMENT_DATA = (By.XPATH, '//div[@class="adding-segments-modal__footer"]//button[@data-class-name="Submit"]')
     CONFIRM_CREATION = (By.CSS_SELECTOR, 'button[data-class-name="Submit"]')

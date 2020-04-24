@@ -42,7 +42,7 @@ class HomePage(BasePage):
 
     def upload_image(self):
         field_upload = self.find(self.locators.FORM_PICTURE)
-        abs_path = os.path.abspath("hw2/help_data/Kenny-sp.jpg")
+        abs_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '../help_data/Kenny-sp.jpg'))
         field_upload.send_keys(abs_path)
 
     def fill_form(self):

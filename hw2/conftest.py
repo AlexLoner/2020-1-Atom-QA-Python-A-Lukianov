@@ -10,7 +10,7 @@ def pytest_addoption(parser):
     parser.addoption('--selenoid', default=False)
 
 
-@pytest.fixture(scope='session')
+@pytest.fixture(scope='function')
 def config(request):
     url = request.config.getoption('--url')
     browser = request.config.getoption('--browser')
@@ -28,12 +28,14 @@ def config(request):
 def config_api():
     settings = {
         'auth': 'https://auth-ac.my.com/auth?lang=ru&nosavelogin=0',
-        'check_auth': 'http://mail.my.com/'
-
+        'login': 'https://target.my.com/auth/mycom?state=target_login%3D1',
+        'csrf': 'https://target.my.com/csrf/',
+        'create_segment': 'https://target.my.com/api/v2/remarketing/segments.json',
+        'delete_segment': 'https://target.my.com/api/v2/remarketing/segments/'
     }
     return settings
 
 
-@pytest.fixture(scope='function')
+@pytest.fixture(scope='session')
 def api_client(config_api):
     return ClientAPI(config_api)

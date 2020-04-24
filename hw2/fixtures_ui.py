@@ -26,9 +26,19 @@ def aud_page(driver):
 def driver(config):
     options = webdriver.ChromeOptions()
     options.add_experimental_option('prefs', {'intl.accept_languages': f'en,en-us'})
-    manager = ChromeDriverManager(version=config['version'])
+    if not config["selenoid"]:
+        manager = ChromeDriverManager(version=config['version'])
+        browser = webdriver.Chrome(executable_path=manager.install(), options=options)
 
-    browser = webdriver.Chrome(executable_path=manager.install(), options=options)
+    else:
+        capabilities = {'acceptInsecureCerts': True,
+                        'browserName': 'chrome',
+                        'version': config['version'],
+                        }
+        browser = webdriver.Remote(command_executor=config['selenoid'],
+                                  options=options,
+                                  desired_capabilities=capabilities)
+
     browser.maximize_window()
     browser.get(config['url'])
     yield browser
